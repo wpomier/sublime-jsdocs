@@ -274,22 +274,30 @@ class JsdocsCommand(sublime_plugin.TextCommand):
     def substituteVariables(self, out):
         def getVar(match):
             varName = match.group(1)
+            format = match.group(3)
             if varName == 'datetime':
                 date = datetime.datetime.now().replace(microsecond=0)
                 offset = time.timezone / -3600.0
-                return "%s%s%02d%02d" % (
-                    date.isoformat(),
-                    '+' if offset >= 0 else "-",
-                    abs(offset),
-                    (offset % 1) * 60
-                )
+                if format is not None:
+                    return date.strftime(format)
+                else:
+                    return "%s%s%02d%02d" % (
+                        date.isoformat(),
+                        '+' if offset >= 0 else "-",
+                        abs(offset),
+                        (offset % 1) * 60
+                    )
             elif varName == 'date':
-                return datetime.date.today().isoformat()
+                date = datetime.date.today();
+                if format is not None:
+                    return date.strftime(format)
+                else:
+                    return date.isoformat()
             else:
                 return match.group(0)
 
         def subLine(line):
-            return re.sub(r'\{\{([^}]+)\}\}', getVar, line)
+            return re.sub(r'\{\{([^}:]+)(:([^}]+))?\}\}', getVar, line)
 
         return list(map(subLine, out))
 

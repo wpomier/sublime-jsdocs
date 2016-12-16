@@ -230,6 +230,7 @@ You can access the configuration settings by selecting `Preferences -> Package S
         function foo (x) {}
 
     Basic variable substitution is supported here for the variables `date` and `datetime`, wrapped in double curly brackets.
+    Optionally it accepts a date format after a colon `:` (as defined in [Python's strftime function][strftime])
 
         // jsdocs_extra_tags = ['@date {{date}}', '@anotherdate {{datetime}}']
         /**<<enter>>
@@ -239,6 +240,17 @@ You can access the configuration settings by selecting `Preferences -> Package S
          * [foo description]
          * @date     2013-03-25
          * @datetime 2013-03-25T21:16:25+0100
+         * @return   {[type]}
+         */
+
+        // jsdocs_extra_tags = ['@date {{date:%d/%m/%Y}}', '@datetime {{datetime:%d¨/%m/%Y %H:%M:%S}}']
+        /**<<enter>>
+        function foo() {}
+
+        /**
+         * [foo description]
+         * @date     16/12/2016
+         * @datetime 16/12/2016 15:35:51
          * @return   {[type]}
          */
 
@@ -292,3 +304,4 @@ This package was created by [Nick Fisher][spadgos], but has many contributions f
 [tags]: https://github.com/spadgos/sublime-jsdocs/tags
 [typehinting]: http://php.net/manual/en/language.oop5.typehinting.php
 [yui]: http://yui.github.com/yuidoc/syntax/index.html
+[strftime]: https://docs.python.org/2/library/datetime.html#strftime-strptime-behavior

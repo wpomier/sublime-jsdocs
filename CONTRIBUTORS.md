@@ -37,4 +37,5 @@ Many thanks to all those who have sent bug reports and especially to those who s
 - Thanasis Polychronakis (@thanpolas)
 - Tiago Santos (@tmcsantos)
 - Timo Tijhof (@Krinkle)
+- Wilfredo Pomier (@wpomier)
 - wronex (@wronex)
